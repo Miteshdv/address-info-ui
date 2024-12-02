@@ -7,7 +7,7 @@ const DataForm = ({ setData }) => {
         const id = event.target.idInput.value;
         const response = await fetch(`/data?id=${id}`);
         const result = await response.json();
-        setData([result.item]);
+        setData([result?.item || {}]);
     };
 
     return (
