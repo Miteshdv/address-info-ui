@@ -47,7 +47,7 @@ const App = () => {
       <DataDisplay data={data} />
       <Box sx={{ mt: 4 }}>
         <Typography variant="h6" component="h2" gutterBottom>
-          Address List
+          People List
         </Typography>
         <List>
           {messages.map((message, index) => (
