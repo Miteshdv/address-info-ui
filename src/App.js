@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Container, Box, Typography, List, ListItem, Paper } from '@mui/material';
 import UploadForm from './UploadForm';
 import DataForm from './DataForm';
 import DataDisplay from './DataDisplay';
@@ -34,18 +35,29 @@ const App = () => {
   }, []);
 
   return (
-    <div className="App">
-      <h1>Address Info</h1>
+    <Container maxWidth="md">
+      <Typography variant="h4" component="h1" gutterBottom>
+        Address Info
+      </Typography>
       <UploadForm />
       <DataForm setData={setData} />
-      <h2>Form Data</h2>
+      <Typography variant="h5" component="h2" gutterBottom>
+        Form Data
+      </Typography>
       <DataDisplay data={data} />
-      <ul>
-        {messages.map((message, index) => (
-          <li key={index}>{JSON.stringify(message, null, 2)}</li>
-        ))}
-      </ul>
-    </div>
+      <Box sx={{ mt: 4 }}>
+        <Typography variant="h6" component="h2" gutterBottom>
+          Address List
+        </Typography>
+        <List>
+          {messages.map((message, index) => (
+            <ListItem key={index} component={Paper} sx={{ mb: 2, p: 2 }}>
+              {JSON.stringify(message, null, 2)}
+            </ListItem>
+          ))}
+        </List>
+      </Box>
+    </Container>
   );
 };
 

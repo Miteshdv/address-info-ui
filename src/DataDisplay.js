@@ -1,33 +1,34 @@
 import React from 'react';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography } from '@mui/material';
 
 const DataDisplay = ({ data }) => {
-    if (data.length === 0) {
-        return <div>No data available</div>;
+    if (!data || data.length === 0) {
+        return <Typography variant="body1">No data available</Typography>;
     }
 
     const headers = Object.keys(data[0]);
 
     return (
-        <div id="dataDisplay">
-            <table>
-                <thead>
-                    <tr>
+        <TableContainer component={Paper} sx={{ mt: 4 }}>
+            <Table>
+                <TableHead>
+                    <TableRow>
                         {headers.map((header) => (
-                            <th key={header}>{header}</th>
+                            <TableCell key={header}>{header}</TableCell>
                         ))}
-                    </tr>
-                </thead>
-                <tbody>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
                     {data.map((item, index) => (
-                        <tr key={index}>
+                        <TableRow key={index}>
                             {headers.map((header) => (
-                                <td key={header}>{item[header]}</td>
+                                <TableCell key={header}>{item[header]}</TableCell>
                             ))}
-                        </tr>
+                        </TableRow>
                     ))}
-                </tbody>
-            </table>
-        </div>
+                </TableBody>
+            </Table>
+        </TableContainer>
     );
 };
 
