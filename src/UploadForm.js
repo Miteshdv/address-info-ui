@@ -1,22 +1,26 @@
 import React from 'react';
+import { Box, Typography, Button } from '@mui/material';
 
-const UploadForm = () => {
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        const formData = new FormData(event.target);
-        const response = await fetch('/upload', {
-            method: 'POST',
-            body: formData,
-        });
-        const result = await response.text();
-        alert(result);
-    };
-
+const UploadForm = ({ handleUpload }) => {
     return (
-        <form id="uploadForm" onSubmit={handleSubmit} enctype="multipart/form-data">
-            <input type="file" name="file" id="fileInput" required />
-            <button type="submit">Upload to S3</button>
-        </form>
+        <Box sx={{ mt: 4 }}>
+            <Typography variant="body1">Upload CSV File</Typography>
+            <Typography variant="body2" sx={{ mt: 2 }}>
+                Please upload a CSV file with the format: name, email, age, city.
+            </Typography>
+            <Button
+                variant="contained"
+                component="label"
+                sx={{ mt: 2 }}
+            >
+                Upload File
+                <input
+                    type="file"
+                    hidden
+                    onChange={handleUpload}
+                />
+            </Button>
+        </Box>
     );
 };
 
