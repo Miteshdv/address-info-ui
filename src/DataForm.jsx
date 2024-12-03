@@ -9,10 +9,11 @@ const DataForm = ({ setData }) => {
             const response = await fetch('/all-data');
             const result = await response.json();
             setData(result);
+            return
         }
         const response = await fetch(`/data?id=${id}`);
         const result = await response.json();
-        setData(result?.item ? [result?.item] : [{}]);
+        setData(result?.Item ? [result?.Item] : [{}]);
     };
 
     return (
@@ -38,7 +39,6 @@ const DataForm = ({ setData }) => {
                 name="id"
                 id="idInput"
                 variant="outlined"
-                required
                 fullWidth
                 sx={{ mb: 2 }}
             />
