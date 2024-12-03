@@ -10,7 +10,7 @@ const UploadForm = () => {
             body: formData,
         });
         const result = await response.text();
-        alert(result);
+        console.log(result);
     };
 
     return (
