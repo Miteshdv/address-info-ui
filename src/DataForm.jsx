@@ -5,9 +5,14 @@ const DataForm = ({ setData }) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const id = event.target.idInput.value;
+        if (!id) {
+            const response = await fetch('/all-data');
+            const result = await response.json();
+            setData(result);
+        }
         const response = await fetch(`/data?id=${id}`);
         const result = await response.json();
-        setData([result?.item || {}]);
+        setData(result?.item ? [result?.item] : [{}]);
     };
 
     return (

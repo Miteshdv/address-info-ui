@@ -9,13 +9,14 @@ const App = () => {
   const [data, setData] = useState([]);
   const [messages, setMessages] = useState([]);
 
+
   useEffect(() => {
+
     const fetchData = async () => {
       const response = await fetch('/all-data');
       const result = await response.json();
       setData(result);
     };
-
     fetchData();
 
     const ws = new WebSocket(`ws://${window.location.host}`);
@@ -44,18 +45,12 @@ const App = () => {
       <Typography variant="h5" component="h2" gutterBottom>
         Form Data
       </Typography>
-      <DataDisplay data={data} />
+
       <Box sx={{ mt: 4 }}>
         <Typography variant="h6" component="h2" gutterBottom>
           People List
         </Typography>
-        <List>
-          {messages.map((message, index) => (
-            <ListItem key={index} component={Paper} sx={{ mb: 2, p: 2 }}>
-              {JSON.stringify(message, null, 2)}
-            </ListItem>
-          ))}
-        </List>
+        <DataDisplay data={data} />
       </Box>
     </Container>
   );
